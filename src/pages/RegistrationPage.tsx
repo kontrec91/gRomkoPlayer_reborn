@@ -1,48 +1,61 @@
-import React, { useState, MouseEvent } from "react";
-import { alpha } from "@mui/material/styles";
+import React, { MouseEvent, useState } from "react";
+
+import { Wrapper } from "../components/Wrapper";
 import background from "../images/headphones.jpg";
 import {
- Box,
  Button,
  FormControl,
- IconButton,
- InputAdornment,
+ FormHelperText,
  InputLabel,
+ Link,
  OutlinedInput,
  Typography,
- FormHelperText,
- Link,
+ Box,
+ InputAdornment,
+ IconButton,
 } from "@mui/material";
-
-import { useFormik } from "formik";
+import { alpha } from "@mui/material/styles";
 import * as Yup from "yup";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import { ROUTES } from "../constants/routes";
-import { Wrapper } from "../components/Wrapper";
 
-export const LoginPage = () => {
+import { ROUTES } from "../constants/routes";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { useFormik } from "formik";
+
+export const RegistrationPage = () => {
  const formik = useFormik({
   initialValues: {
+   login: "",
    email: "",
    password: "",
+   confirmPassword: "",
   },
-
   validationSchema: Yup.object({
+   login: Yup.string()
+    .max(15, "Must be 15 characters or less")
+    .required("Required"),
    email: Yup.string().email("Invalid email address").required("Required"),
    password: Yup.string()
     .min(8, "Password must be at least 8 characters")
+    .required("Required"),
+
+   confirmPassword: Yup.string()
+    .min(8, "Password must be at least 8 characters")
+    .oneOf([Yup.ref("password")], "Passwords must match")
     .required("Required"),
   }),
 
   onSubmit: (values) => console.log("Submit", values),
  });
 
+ console.log("FORMIK", formik);
+
  const [showPassword, setShowPassword] = useState(false);
+
  const handleClickShowPassword = () => setShowPassword((show) => !show);
  const handleMouseDownPassword = (event: MouseEvent<HTMLButtonElement>) => {
   event.preventDefault();
  };
+
  return (
   <Wrapper background={background}>
    <Box
@@ -63,13 +76,30 @@ export const LoginPage = () => {
     <FormControl
      sx={{ m: 1, width: "30ch" }}
      variant="outlined"
+     error={Boolean(formik.errors.login)}>
+     <InputLabel htmlFor="outline-adornment-name">User name</InputLabel>
+     <OutlinedInput
+      id="outline-adornment-name"
+      name="login"
+      label="User name"
+      value={formik.values.login}
+      onChange={formik.handleChange}
+     />
+     {formik.errors.login ? (
+      <FormHelperText id="nameError">{formik.errors.login}</FormHelperText>
+     ) : null}
+    </FormControl>
+
+    <FormControl
+     sx={{ m: 1, width: "30ch" }}
+     variant="outlined"
      error={Boolean(formik.errors.email)}>
      <InputLabel htmlFor="outline-adornment-email">User email</InputLabel>
      <OutlinedInput
       id="outline-adornment-email"
-      label="User email"
       name="email"
       type="email"
+      label="User email"
       onChange={formik.handleChange}
       value={formik.values.email}
      />
@@ -86,7 +116,6 @@ export const LoginPage = () => {
      <OutlinedInput
       id="outlined-adornment-password"
       name="password"
-      label="Password"
       type={showPassword ? "text" : "password"}
       value={formik.values.password}
       onChange={formik.handleChange}
@@ -101,10 +130,44 @@ export const LoginPage = () => {
         </IconButton>
        </InputAdornment>
       }
+      label="Password"
      />
      {formik.errors.password ? (
       <FormHelperText id="passwordError">
        {formik.errors.password}
+      </FormHelperText>
+     ) : null}
+    </FormControl>
+
+    <FormControl
+     sx={{ m: 1, width: "30ch" }}
+     variant="outlined"
+     error={Boolean(formik.errors.confirmPassword)}>
+     <InputLabel htmlFor="outlined-adornment-confirm-password">
+      Confirm password
+     </InputLabel>
+     <OutlinedInput
+      id="outlined-adornment-confirm-password"
+      name="confirmPassword"
+      type={showPassword ? "text" : "password"}
+      value={formik.values.confirmPassword}
+      onChange={formik.handleChange}
+      endAdornment={
+       <InputAdornment position="end">
+        <IconButton
+         aria-label="toggle password visibility"
+         onClick={handleClickShowPassword}
+         onMouseDown={handleMouseDownPassword}
+         edge="end">
+         {showPassword ? <VisibilityOff /> : <Visibility />}
+        </IconButton>
+       </InputAdornment>
+      }
+      label="Confirm Password"
+     />
+     {formik.errors.confirmPassword ? (
+      <FormHelperText id="passwordError">
+       {formik.errors.confirmPassword}
       </FormHelperText>
      ) : null}
     </FormControl>
@@ -118,15 +181,12 @@ export const LoginPage = () => {
        color: (theme) => theme.palette.common.black,
       },
      }}>
-     Log in
+     Submit
     </Button>
-
-    <Typography variant="body1">
-     No account yet?
-     <Link href={ROUTES.REGISTRATION} underline="hover">
-      Sign up
-     </Link>
-    </Typography>
+    <Typography variant="body1">Back to</Typography>
+    <Link href={ROUTES.LOGIN} underline="hover">
+     Log in
+    </Link>
    </Box>
   </Wrapper>
  );
