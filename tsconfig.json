@@ -15,7 +15,7 @@
   "noEmit": true,
   "jsx": "preserve"
  },
- "include": ["src"],
+ "include": ["src", "src/utils/api.ts"],
  "paths": {
   "@theme-ui/core/dist/react-jsx.d.ts": [".sink.d.ts"],
   "@theme-ui/core": [".sink.d.ts"]

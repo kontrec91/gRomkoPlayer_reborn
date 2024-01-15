@@ -5,29 +5,36 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
 import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
 
-const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
+import { store } from "./redux/store";
+
+const root = ReactDOM.createRoot(
+ document.getElementById("root") as HTMLElement
+);
 root.render(
-//  <section
-//   style={{
-//    display: "flex",
-//    alignContent: "center",
-//    justifyContent: "center",
-//    minHeight: "100%",
-//    flexDirection: "column",
-//    // align-content: center;
-//    // justify-content: center;
-//    // min-height: 100%;
-//    // flex-direction: column;
-//    // max-width: 400px;
-//   }}
-//  >
-  <React.StrictMode>
-   <BrowserRouter>
-    <App />
-   </BrowserRouter>
-  </React.StrictMode>
-//  </section>
+ //  <section
+ //   style={{
+ //    display: "flex",
+ //    alignContent: "center",
+ //    justifyContent: "center",
+ //    minHeight: "100%",
+ //    flexDirection: "column",
+ //    // align-content: center;
+ //    // justify-content: center;
+ //    // min-height: 100%;
+ //    // flex-direction: column;
+ //    // max-width: 400px;
+ //   }}
+ //  >
+ //  <React.StrictMode>
+ <Provider store={store}>
+  {/* <BrowserRouter> */}
+  <App />
+  {/* </BrowserRouter> */}
+ </Provider>
+ //  </React.StrictMode>
+ //  </section>
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -20,8 +20,10 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { ROUTES } from "../constants/routes";
 import { Wrapper } from "../components/Wrapper";
+import { useNavigate } from "react-router";
 
 export const LoginPage = () => {
+ const navigate = useNavigate();
  const formik = useFormik({
   initialValues: {
    email: "",
@@ -35,13 +37,18 @@ export const LoginPage = () => {
     .required("Required"),
   }),
 
-  onSubmit: (values) => console.log("Submit", values),
+  onSubmit: (values) => handleSubmit(values),
  });
 
  const [showPassword, setShowPassword] = useState(false);
  const handleClickShowPassword = () => setShowPassword((show) => !show);
  const handleMouseDownPassword = (event: MouseEvent<HTMLButtonElement>) => {
   event.preventDefault();
+ };
+
+ const handleSubmit = (values: { email: string; password: string }) => {
+  console.log("Submit", values);
+  navigate(ROUTES.MY_PLAYLISTS);
  };
  return (
   <Wrapper background={background}>

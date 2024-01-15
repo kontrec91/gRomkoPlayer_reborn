@@ -20,8 +20,11 @@ import * as Yup from "yup";
 import { ROUTES } from "../constants/routes";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useFormik } from "formik";
+import { useNavigate } from "react-router";
 
 export const RegistrationPage = () => {
+ const navigate = useNavigate();
+
  const formik = useFormik({
   initialValues: {
    login: "",
@@ -44,16 +47,19 @@ export const RegistrationPage = () => {
     .required("Required"),
   }),
 
-  onSubmit: (values) => console.log("Submit", values),
+  onSubmit: (values) => handleSubmit(values),
  });
-
- console.log("FORMIK", formik);
 
  const [showPassword, setShowPassword] = useState(false);
 
  const handleClickShowPassword = () => setShowPassword((show) => !show);
  const handleMouseDownPassword = (event: MouseEvent<HTMLButtonElement>) => {
   event.preventDefault();
+ };
+
+ const handleSubmit = (values: { email: string; password: string }) => {
+  console.log("Submit", values);
+  navigate(ROUTES.MY_PLAYLISTS);
  };
 
  return (

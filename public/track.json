@@ -1,0 +1,64 @@
+[
+ {
+  "playlist1": [
+   {
+    "id": 1,
+    "url": "url",
+    "originalFileName": "track1"
+   },
+   {
+    "id": 2,
+    "url": "url",
+    "originalFileName": "track2"
+   },
+   {
+    "id": 3,
+    "url": "url",
+    "originalFileName": "track3"
+   }
+  ]
+ },
+ {
+  "playlist2": [
+   {
+    "id": 1,
+    "url": "url",
+    "originalFileName": "track1"
+   },
+   {
+    "id": 2,
+    "url": "url",
+    "originalFileName": "track2"
+   }
+  ]
+ },
+ {
+  "playlist3": [
+   {
+    "id": 1,
+    "url": "url",
+    "originalFileName": "track1"
+   },
+   {
+    "id": 2,
+    "url": "url",
+    "originalFileName": "track2"
+   },
+   {
+    "id": 3,
+    "url": "url",
+    "originalFileName": "track3"
+   },
+   {
+    "id": 4,
+    "url": "url",
+    "originalFileName": "track4"
+   },
+   {
+    "id": 5,
+    "url": "url",
+    "originalFileName": "track5"
+   }
+  ]
+ }
+]
