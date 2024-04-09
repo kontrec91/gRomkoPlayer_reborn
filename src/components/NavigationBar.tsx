@@ -23,11 +23,23 @@ const styles: SxProps = {
  border: "1px solid",
  p: 1,
  bgcolor: "background.paper",
+ w: "100px",
+ color: "black",
 };
 
 export const NavigationBar = () => {
  const dispatch = useDispatch();
- const value = useSelector((state: RootState) => state);
+ const value = useSelector((state: RootState) => state.tab);
+
+ const [open, setOpen] = useState(false);
+
+ const handleClick = () => {
+  setOpen((prev) => !prev);
+ };
+
+ const handleClickAway = () => {
+  setOpen(false);
+ };
 
  const handleChange = (
   event: SyntheticEvent<Element, Event>,
@@ -53,14 +65,13 @@ export const NavigationBar = () => {
     touchEvent="onTouchStart"
     onClickAway={handleClickAway}>
     <Box sx={{ position: "relative" }}>
-     <button type="button" onClick={handleClick}>
-      Open menu dropdown
-     </button>
-     {open ? (
-      <Box sx={styles}>
-       Click me, I will stay visible until you click outside.
-      </Box>
-     ) : null}
+     {/* <button type="button" onClick={handleClick}>
+      User
+     </button> */}
+     <Link onClick={handleClick} to={""}>
+      User
+     </Link>
+     {open ? <Box sx={styles}>Sign out</Box> : null}
     </Box>
    </ClickAwayListener>
   );
@@ -89,6 +100,19 @@ export const NavigationBar = () => {
     <Tab component={Link} label="my playlists" to={ROUTES.MY_PLAYLISTS} />
     <Tab component={Link} label="all playlists" to={ROUTES.ALL_PLAYLISTS} />
     <Tab component={Link} label="search" to={ROUTES.SEARCH} />
+
+    {/* <ClickAwayListener
+     mouseEvent="onMouseDown"
+     touchEvent="onTouchStart"
+     onClickAway={handleClickAway}>
+     <Box sx={{ position: "relative" }}>
+      <Tab component={Link} label="user" to={""} />
+      {open ? <Box sx={styles}>Sign out</Box> : null}
+     </Box>
+    </ClickAwayListener> */}
+
+    {/* {open ? <Box sx={styles}>Sign out</Box> : null} */}
+    {/* </Tab> */}
     <Tab component={UserMenu} />
    </Tabs>
   </AppBar>

@@ -1,12 +1,12 @@
-import React, { useEffect } from "react";
+import React from "react";
 import background from "../images/girl.jpg";
 import { Wrapper } from "../components/Wrapper";
 import { NavigationBar } from "../components/NavigationBar";
-import { getMyPlaylist } from "../api/getMyPlaylist";
+import { RootState } from "../redux/store";
+import { useSelector } from "react-redux";
 
 export const AllPlaylistsPage = () => {
-
- useEffect(() => getMyPlaylist(), []);
+ const allPlaylists = useSelector((state: RootState) => state.allPlaylists);
 
  return (
   <Wrapper background={background}>

@@ -1,7 +1,12 @@
 import React from "react";
 import { LoginPage } from "./pages/LoginPage";
 import { MyPlaylistsPage } from "./pages/MyPlaylistsPage";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+ BrowserRouter as Router,
+ Route,
+ Routes,
+ Navigate,
+} from "react-router-dom";
 
 import { RegistrationPage } from "./pages/RegistrationPage";
 import { ROUTES } from "./constants/routes";
@@ -17,6 +22,7 @@ function App() {
     <Route path={ROUTES.MY_PLAYLISTS} element={<MyPlaylistsPage />} />
     <Route path={ROUTES.ALL_PLAYLISTS} element={<AllPlaylistsPage />} />
     <Route path={ROUTES.SEARCH} element={<SearchPage />} />
+    <Route path="*" element={<Navigate to={ROUTES.LOGIN} />} />
    </Routes>
   </Router>
  );

@@ -1,63 +1,128 @@
 [
  {
-  "playlist1": [
+  "userName": "user1",
+  "playlistsData": [
    {
-    "id": 1,
-    "url": "url",
-    "originalFileName": "track1"
+    "playlistName": "playlist1",
+    "playlistData": [
+     {
+      "id": 1,
+      "url": "url",
+      "originalFileName": "track1"
+     },
+     {
+      "id": 2,
+      "url": "url",
+      "originalFileName": "track2"
+     },
+     {
+      "id": 3,
+      "url": "url",
+      "originalFileName": "track3"
+     }
+    ]
    },
    {
-    "id": 2,
-    "url": "url",
-    "originalFileName": "track2"
-   },
-   {
-    "id": 3,
-    "url": "url",
-    "originalFileName": "track3"
+    "playlistName": "playlist2",
+    "playlistData": [
+     {
+      "id": 1,
+      "url": "url",
+      "originalFileName": "track1"
+     },
+     {
+      "id": 2,
+      "url": "url",
+      "originalFileName": "track2"
+     }
+    ]
    }
   ]
  },
+
  {
-  "playlist2": [
+  "userName": "user2",
+  "playlistsData": [
    {
-    "id": 1,
-    "url": "url",
-    "originalFileName": "track1"
-   },
-   {
-    "id": 2,
-    "url": "url",
-    "originalFileName": "track2"
+    "playlistName": "playlist1",
+    "playlistData": [
+     {
+      "id": 1,
+      "url": "url",
+      "originalFileName": "track1"
+     }
+    ]
    }
   ]
  },
+
  {
-  "playlist3": [
+  "userName": "user3",
+  "playlistsData": [
    {
-    "id": 1,
-    "url": "url",
-    "originalFileName": "track1"
+    "playlistName": "playlist1",
+    "playlistData": [
+     {
+      "id": 1,
+      "url": "url",
+      "originalFileName": "track1"
+     },
+     {
+      "id": 2,
+      "url": "url",
+      "originalFileName": "track2"
+     },
+     {
+      "id": 3,
+      "url": "url",
+      "originalFileName": "track3"
+     }
+    ]
    },
    {
-    "id": 2,
-    "url": "url",
-    "originalFileName": "track2"
+    "playlistName": "playlist2",
+    "playlistData": [
+     {
+      "id": 1,
+      "url": "url",
+      "originalFileName": "track1"
+     },
+     {
+      "id": 2,
+      "url": "url",
+      "originalFileName": "track2"
+     }
+    ]
    },
    {
-    "id": 3,
-    "url": "url",
-    "originalFileName": "track3"
-   },
-   {
-    "id": 4,
-    "url": "url",
-    "originalFileName": "track4"
-   },
-   {
-    "id": 5,
-    "url": "url",
-    "originalFileName": "track5"
+    "playlistName": "playlist3",
+    "playlistData": [
+     {
+      "id": 1,
+      "url": "url",
+      "originalFileName": "track1"
+     },
+     {
+      "id": 2,
+      "url": "url",
+      "originalFileName": "track2"
+     },
+     {
+      "id": 3,
+      "url": "url",
+      "originalFileName": "track3"
+     },
+     {
+      "id": 4,
+      "url": "url",
+      "originalFileName": "track4"
+     },
+     {
+      "id": 5,
+      "url": "url",
+      "originalFileName": "track5"
+     }
+    ]
    }
   ]
  }
