@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { AllUsersPlaylistsType } from "./types";
+import { AllPlaylistsDataType } from "./types";
 
-const initialState: AllUsersPlaylistsType[] = [];
+const initialState: AllPlaylistsDataType[] = [];
 
 const allPlaylists = createSlice({
  name: "allPlaylists",

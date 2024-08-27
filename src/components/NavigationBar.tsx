@@ -16,14 +16,14 @@ import { RootState } from "../redux/store";
 
 const styles: SxProps = {
  position: "absolute",
- top: 28,
+ top: 10,
  right: 0,
- left: 0,
+ left: 55,
  zIndex: 1,
  border: "1px solid",
- p: 1,
+ //  p: 1,
  bgcolor: "background.paper",
- w: "100px",
+ width: "70px",
  color: "black",
 };
 
@@ -61,17 +61,43 @@ export const NavigationBar = () => {
 
   return (
    <ClickAwayListener
+    // sx={{ position: "relative" }}
     mouseEvent="onMouseDown"
     touchEvent="onTouchStart"
     onClickAway={handleClickAway}>
-    <Box sx={{ position: "relative" }}>
+    <Box
+     sx={{
+      position: "relative",
+      // mt:'10px'
+      padding: "12px 16px",
+     }}>
      {/* <button type="button" onClick={handleClick}>
       User
      </button> */}
-     <Link onClick={handleClick} to={""}>
+     {/* <Link onClick={handleClick} to={""}>
       User
      </Link>
-     {open ? <Box sx={styles}>Sign out</Box> : null}
+     {!open ? <Box sx={styles}>Sign out</Box> : null} */}
+     <Box sx={{ color: "grey" }} onClick={handleClick}>
+      USER
+     </Box>
+     {open ? (
+      <Link
+       style={{
+        position: "absolute",
+        top: 10,
+        right: 0,
+        left: 60,
+        zIndex: 1,
+        border: "1px solid",
+        backgroundColor: "background.paper",
+        width: "70px",
+        // color: "black",
+       }}
+       to={ROUTES.LOGIN}>
+       Sign out
+      </Link>
+     ) : null}
     </Box>
    </ClickAwayListener>
   );
@@ -113,7 +139,7 @@ export const NavigationBar = () => {
 
     {/* {open ? <Box sx={styles}>Sign out</Box> : null} */}
     {/* </Tab> */}
-    <Tab component={UserMenu} />
+    <Tab component={UserMenu} label="user" />
    </Tabs>
   </AppBar>
  );

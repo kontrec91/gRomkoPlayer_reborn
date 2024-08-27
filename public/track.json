@@ -1,10 +1,10 @@
 [
  {
   "userName": "user1",
-  "playlistsData": [
+  "subRows": [
    {
     "playlistName": "playlist1",
-    "playlistData": [
+    "subRows": [
      {
       "id": 1,
       "url": "url",
@@ -24,7 +24,7 @@
    },
    {
     "playlistName": "playlist2",
-    "playlistData": [
+    "subRows": [
      {
       "id": 1,
       "url": "url",
@@ -42,14 +42,19 @@
 
  {
   "userName": "user2",
-  "playlistsData": [
+  "subRows": [
    {
     "playlistName": "playlist1",
-    "playlistData": [
+    "subRows": [
      {
       "id": 1,
       "url": "url",
       "originalFileName": "track1"
+     },
+     {
+      "id": 2,
+      "url": "url",
+      "originalFileName": "track2"
      }
     ]
    }
@@ -58,10 +63,10 @@
 
  {
   "userName": "user3",
-  "playlistsData": [
+  "subRows": [
    {
     "playlistName": "playlist1",
-    "playlistData": [
+    "subRows": [
      {
       "id": 1,
       "url": "url",
@@ -81,7 +86,7 @@
    },
    {
     "playlistName": "playlist2",
-    "playlistData": [
+    "subRows": [
      {
       "id": 1,
       "url": "url",
@@ -96,7 +101,7 @@
    },
    {
     "playlistName": "playlist3",
-    "playlistData": [
+    "subRows": [
      {
       "id": 1,
       "url": "url",
