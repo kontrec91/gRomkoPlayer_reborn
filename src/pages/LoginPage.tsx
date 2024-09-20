@@ -46,14 +46,13 @@ export const LoginPage = () => {
   event.preventDefault();
  };
 
- const handleSubmit = (values: { email: string; password: string }) => {//смотри здесь
-  console.log("Submit", values);
-  //localStorage.Login && lc.pass?  navigate(ROUTES.MY_PLAYLISTS):  navigate(ROUTES.Login)|| null;
+ const handleSubmit = (values: { email: string; password: string }) => {
   navigate(ROUTES.MY_PLAYLISTS);
  };
+
  return (
   <Wrapper background={background}>
-  <Box
+   <Box
     component="form"
     onSubmit={formik.handleSubmit}
     sx={{

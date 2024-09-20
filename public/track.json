@@ -1,22 +1,24 @@
 [
  {
   "userName": "user1",
+  "userId": "u1",
   "subRows": [
    {
     "playlistName": "playlist1",
+    "playlistId": "u1_p1",
     "subRows": [
      {
-      "id": 1,
+      "trackId": "u1_p1_t1",
       "url": "url",
       "originalFileName": "track1"
      },
      {
-      "id": 2,
+      "trackId": "u1_p1_t2",
       "url": "url",
       "originalFileName": "track2"
      },
      {
-      "id": 3,
+      "trackId": "u1_p1_t3",
       "url": "url",
       "originalFileName": "track3"
      }
@@ -24,14 +26,15 @@
    },
    {
     "playlistName": "playlist2",
+    "playlistId": "u1_p2",
     "subRows": [
      {
-      "id": 1,
+      "trackId": "u1_p2_t1",
       "url": "url",
       "originalFileName": "track1"
      },
      {
-      "id": 2,
+      "trackId": "u1_p2_t2",
       "url": "url",
       "originalFileName": "track2"
      }
@@ -42,43 +45,52 @@
 
  {
   "userName": "user2",
+  "userId": "u2",
   "subRows": [
    {
     "playlistName": "playlist1",
+    "playlistId": "u2_p1",
     "subRows": [
      {
-      "id": 1,
+      "trackId": "u2_p1_t1",
       "url": "url",
       "originalFileName": "track1"
      },
      {
-      "id": 2,
+      "trackId": "u2_p1_t2",
       "url": "url",
       "originalFileName": "track2"
      }
     ]
+   },
+   {
+    "playlistName": "playlist2",
+    "playlistId": "u2_p2",
+    "subRows": []
    }
   ]
  },
 
  {
   "userName": "user3",
+  "userId": "u3",
   "subRows": [
    {
     "playlistName": "playlist1",
+    "playlistId": "u3_p1",
     "subRows": [
      {
-      "id": 1,
+      "trackId": "u3_p1_t1",
       "url": "url",
       "originalFileName": "track1"
      },
      {
-      "id": 2,
+      "trackId": "u3_p1_t2",
       "url": "url",
       "originalFileName": "track2"
      },
      {
-      "id": 3,
+      "trackId": "u3_p1_t3",
       "url": "url",
       "originalFileName": "track3"
      }
@@ -86,14 +98,15 @@
    },
    {
     "playlistName": "playlist2",
+    "playlistId": "u3_p2",
     "subRows": [
      {
-      "id": 1,
+      "trackId": "u3_p2_t1",
       "url": "url",
       "originalFileName": "track1"
      },
      {
-      "id": 2,
+      "trackId": "u3_p2_t2",
       "url": "url",
       "originalFileName": "track2"
      }
@@ -101,29 +114,30 @@
    },
    {
     "playlistName": "playlist3",
+    "playlistId": "u3_p3",
     "subRows": [
      {
-      "id": 1,
+      "trackId": "u3_p3_t1",
       "url": "url",
       "originalFileName": "track1"
      },
      {
-      "id": 2,
+      "trackId": "u3_p3_t2",
       "url": "url",
       "originalFileName": "track2"
      },
      {
-      "id": 3,
+      "trackId": "u3_p3_t3",
       "url": "url",
       "originalFileName": "track3"
      },
      {
-      "id": 4,
+      "trackId": "u3_p3_t4",
       "url": "url",
       "originalFileName": "track4"
      },
      {
-      "id": 5,
+      "trackId": "u3_p3_t5",
       "url": "url",
       "originalFileName": "track5"
      }

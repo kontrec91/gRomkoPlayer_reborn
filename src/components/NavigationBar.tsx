@@ -8,11 +8,12 @@ import {
  Tabs,
 } from "@mui/material";
 import { ROUTES } from "../constants/routes";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { alpha } from "@mui/material/styles";
 import { useDispatch, useSelector } from "react-redux";
 import { setTab } from "../redux/currentTab";
 import { RootState } from "../redux/store";
+import { defaultTabValue } from "../constants/defaultValues";
 
 const styles: SxProps = {
  position: "absolute",
@@ -49,6 +50,8 @@ export const NavigationBar = () => {
  };
 
  const UserMenu = () => {
+  //replace to file
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
 
   const handleClick = () => {
@@ -57,6 +60,14 @@ export const NavigationBar = () => {
 
   const handleClickAway = () => {
    setOpen(false);
+  };
+
+  const handleSignOutClick = (
+   event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
+  ) => {
+   event.preventDefault();
+   dispatch(setTab(defaultTabValue));
+   navigate(ROUTES.LOGIN);
   };
 
   return (
@@ -83,6 +94,7 @@ export const NavigationBar = () => {
      </Box>
      {open ? (
       <Link
+       onClick={handleSignOutClick}
        style={{
         position: "absolute",
         top: 10,
@@ -140,6 +152,7 @@ export const NavigationBar = () => {
     {/* {open ? <Box sx={styles}>Sign out</Box> : null} */}
     {/* </Tab> */}
     <Tab component={UserMenu} label="user" />
+    {/* <Tab component={Link} label="log out" to={ROUTES.DEFAULT}/> */}
    </Tabs>
   </AppBar>
  );

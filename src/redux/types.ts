@@ -1,19 +1,3 @@
-// export type TrackDataType = {
-//  id: number;
-//  url: string;
-//  originalFileName: string;
-// };
-
-// export type PlaylistDataType = {
-//  playlistName: string;
-//  subRows: TrackDataType[];
-// };
-
-// export type AllPlaylistsDataType = {
-//  userName: string;
-//  subRows: PlaylistDataType[];
-// };
-
 export interface TrackDataType {
  trackId: string;
  url: string;
