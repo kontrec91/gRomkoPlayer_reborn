@@ -147,6 +147,7 @@ import {
 } from "@tanstack/react-table";
 import { AllPlaylistsDataType, PlaylistDataType } from "../redux/types";
 import { useMemo, useState } from "react";
+import { Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material";
 
 export const PlaylistTable = ({ data }: { data: AllPlaylistsDataType[] }) => {
  const [expanded, setExpanded] = useState<ExpandedState>({});
@@ -205,33 +206,33 @@ export const PlaylistTable = ({ data }: { data: AllPlaylistsDataType[] }) => {
     height: "100%",
     marginTop: "10vh",
    }}>
-   <table
-    style={{
+   <Table
+    sx={{
      marginTop: "1rem",
     }}>
-    <thead>
+    <TableHead>
      {table.getHeaderGroups().map((headerGroup) => (
-      <tr key={headerGroup.id}>
+      <TableRow key={headerGroup.id}>
        {headerGroup.headers.map((header) => (
-        <th key={header.id}>
+        <TableCell key={header.id}>
          {flexRender(header.column.columnDef.header, header.getContext())}
-        </th>
+        </TableCell>
        ))}
-      </tr>
+      </TableRow>
      ))}
-    </thead>
-    <tbody>
+    </TableHead>
+    <TableBody>
      {table.getRowModel().rows.map((row) => (
-      <tr key={row.id}>
+      <TableRow key={row.id}>
        {row.getVisibleCells().map((cell) => (
-        <td key={cell.id}>
+        <TableCell key={cell.id}>
          {flexRender(cell.column.columnDef.cell, cell.getContext())}
-        </td>
+        </TableCell>
        ))}
-      </tr>
+      </TableRow>
      ))}
-    </tbody>
-   </table>
+    </TableBody>
+   </Table>
   </Box>
  );
 };

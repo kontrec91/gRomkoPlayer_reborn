@@ -8,6 +8,7 @@ import { getAllPlaylists } from "../redux/sagas/sagas";
 import { AllPlaylistsDataType } from "../redux/types";
 import { PlaylistTable } from "../components/PlaylistTable";
 import { PlaylistTableTest } from "../components/PlaylistTableTest";
+import CollapsibleTable from "../components/needToDelete";
 
 const TemplateTable = () => {
  return (
@@ -130,10 +131,14 @@ export const MyPlaylistsPage = () => {
   <Wrapper background={background}>
    <NavigationBar />
    {data.length > 0 ? (
-    // <PlaylistTable data={data} />
-    <PlaylistTableTest data={data} />
-    // <TemplateTable />
+    <>
+     {/* <PlaylistTable data={data} /> need to delete it */}
+     {/* <PlaylistTableTest {...data} /> */}
+     <PlaylistTableTest data={data} />
+     {/* <CollapsibleTable /> */}
+    </>
    ) : (
+    // <TemplateTable />
     //<PlaylistTableTest />
     <div>Loading...</div>
    )}
