@@ -15,16 +15,17 @@ import { SearchPage } from "./pages/SearchPage";
 
 function App() {
  return (
-  <Router>
-   <Routes>
-    <Route path={ROUTES.LOGIN} element={<LoginPage />} />
-    <Route path={ROUTES.REGISTRATION} element={<RegistrationPage />} />
-    <Route path={ROUTES.MY_PLAYLISTS} element={<MyPlaylistsPage />} />
-    <Route path={ROUTES.ALL_PLAYLISTS} element={<AllPlaylistsPage />} />
-    <Route path={ROUTES.SEARCH} element={<SearchPage />} />
-    <Route path="*" element={<Navigate to={ROUTES.LOGIN} />} />
-   </Routes>
-  </Router>
+//   <>testing</>
+    <Router>
+     <Routes>
+      <Route path={ROUTES.LOGIN} element={<LoginPage />} />
+      <Route path={ROUTES.REGISTRATION} element={<RegistrationPage />} />
+      <Route path={ROUTES.MY_PLAYLISTS} element={<MyPlaylistsPage />} />
+      <Route path={ROUTES.ALL_PLAYLISTS} element={<AllPlaylistsPage />} />
+      <Route path={ROUTES.SEARCH} element={<SearchPage />} />
+      <Route path="*" element={<Navigate to={ROUTES.LOGIN} />} />
+     </Routes>
+    </Router>
  );
 }
 

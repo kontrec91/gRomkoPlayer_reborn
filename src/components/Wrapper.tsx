@@ -1,3 +1,4 @@
+import { Box } from "@mui/system";
 import React from "react";
 
 type Props = {
@@ -6,10 +7,9 @@ type Props = {
 };
 
 export const Wrapper = ({ background, children }: Props) => {
-
  return (
-  <div
-   style={{
+  <Box
+   sx={{
     backgroundImage: `url(${background})`,
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
@@ -18,10 +18,10 @@ export const Wrapper = ({ background, children }: Props) => {
     alignItems: "center",
     justifyContent: "center",
     width: "100%",
-    height: "100vh",
+    minHeight: "100vh",
     padding: "10px",
    }}>
    {children}
-  </div>
+  </Box>
  );
 };
