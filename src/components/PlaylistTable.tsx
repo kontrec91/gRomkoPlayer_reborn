@@ -87,6 +87,24 @@ const ExpandedPlaylistRow = (
         }}>
         {playlist.playlistName}
        </Typography>
+       <Box
+        sx={{
+         marginLeft: "5px",
+         ".MuiIconButton-sizeMedium": {
+          padding: "2px",
+         },
+        }}>
+        <Tooltip title="Add track">
+         <IconButton>
+          <Add />
+         </IconButton>
+        </Tooltip>
+        <Tooltip title="Delete playlist">
+         <IconButton>
+          <Clear />
+         </IconButton>
+        </Tooltip>
+       </Box>
       </TableCell>
      </TableRow>
      <TableRow>
@@ -130,40 +148,6 @@ const ExpandedPlaylistRow = (
   }
   return null;
  });
-
- //    return <TableRow>
- //    <TableCell
- //     colSpan={row.getVisibleCells().length}
- //     sx={{ padding: "0px", paddingLeft: "20px" }}>
- //     <Table sx={{ width: "100%" }}>
- //      <TableBody>
- //       {"subRows" in row.original &&
- //        (row.original.subRows as PlaylistDataType[]).map(
- //         (playlist: PlaylistDataType) => {
- //          console.log("row", row);
- //          console.log("cells", row.getVisibleCells());
- //          return (
- //           expandedPlaylistId === playlist.playlistId &&
- //           playlist.subRows.map((track: TrackDataType) => (
- //            <TableRow key={track.trackId}>
- //             <TableCell
- //              sx={{
- //               padding: "5px",
- //               border: "1px solid black",
- //               cursor: "pointer",
- //              }}>
- //              {track.originalFileName}
- //             </TableCell>
- //            </TableRow>
- //           ))
- //          );
- //         }
- //        )}
- //      </TableBody>
- //     </Table>
- //    </TableCell>
- //   </TableRow>
- //  )
 };
 
 export const PlaylistTable = ({ data }: PlaylistTableTestProps) => {

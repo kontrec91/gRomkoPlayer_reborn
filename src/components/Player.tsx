@@ -11,6 +11,7 @@ import {
 import { IconButton, LinearProgress, Slider, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { useEffect, useRef, useState } from "react";
+import { formatSecondsToMinutes } from "../feature/convetnTrackTime";
 
 export const Player = () => {
  const audioRef = useRef<HTMLAudioElement>(null);
@@ -21,10 +22,9 @@ export const Player = () => {
  const [currentTime, setCurrentTime] = useState(0);
  const [trackDuration, setTrackDuration] = useState(0);
  const [progress, setProgress] = useState(0);
- const [isScrubbing, setIsScrubbing] = useState(false);
 
  useEffect(() => {
-  if (isPlaying && audioRef.current && !isScrubbing) {
+  if (isPlaying && audioRef.current) {
    setTrackDuration(audioRef.current.duration);
    const timer = setInterval(() => {
     setCurrentTime(audioRef.current!.currentTime);
@@ -33,13 +33,14 @@ export const Player = () => {
       setIsPlaying(false);
       return 0;
      }
+
      return (audioRef.current!.currentTime / audioRef.current!.duration) * 100;
     });
    }, 500);
 
    return () => clearInterval(timer);
   }
- }, [isPlaying, isScrubbing]);
+ }, [isPlaying]);
 
  //  useEffect(() => {
  //   const updateProgress = () => {
@@ -63,15 +64,6 @@ export const Player = () => {
  //   };
  //  }, []);
 
- function nilFirst(t: any) {
-  if (t.toString().length === 1) return "0" + t;
-  return t.toString();
- }
-
- function toTime(sec = 0) {
-  return nilFirst(Math.trunc(sec / 60)) + ":" + nilFirst(Math.trunc(sec % 60));
- }
-
  const togglePlay = () => {
   if (audioRef.current) {
    if (isPlaying) {
@@ -93,30 +85,18 @@ export const Player = () => {
 
  const handleProgressChange = (event: React.MouseEvent<HTMLDivElement>) => {
   if (audioRef.current) {
-   const clickPositionX = event.nativeEvent.offsetX;
-   const progressBarWidth = event.currentTarget.clientWidth;
+   isPlaying && audioRef.current.pause();
+   const progressBar = event.currentTarget;
+   const rect = progressBar.getBoundingClientRect();
+   const clickPositionX = event.clientX - rect.left;
+   const progressBarWidth = progressBar.clientWidth;
    const clickPercentageWidth = clickPositionX / progressBarWidth;
    const clickTime = clickPercentageWidth * trackDuration;
-   console.log("clickPositionX", clickPositionX);
-   console.log("progressBarWidth", progressBarWidth);
-   console.log("clickPercentageWidth", clickPercentageWidth);
-   console.log("clickTime", clickTime);
-   console.log("===>>>>>>>>>>>>>>>");
-
-   const wasPlaying = !audioRef.current.paused;
-   audioRef.current.pause();
-
-   setIsScrubbing(true);
 
    audioRef.current.currentTime = clickTime;
    setProgress(clickPercentageWidth * 100);
 
-   setTimeout(() => {
-    setIsScrubbing(false);
-    if (wasPlaying) {
-     audioRef.current?.play();
-    }
-   }, 300);
+   isPlaying && audioRef.current.play();
   }
  };
 
@@ -139,6 +119,7 @@ export const Player = () => {
      width: "600px",
     }}
    />
+
    <IconButton>
     <SkipPrevious />
    </IconButton>
@@ -148,7 +129,7 @@ export const Player = () => {
    <IconButton>
     <SkipNext />
    </IconButton>
-   <Typography>{toTime(currentTime)}</Typography>
+   <Typography>{formatSecondsToMinutes(currentTime)}</Typography>
    <LinearProgress
     value={progress}
     variant="determinate"
@@ -160,7 +141,7 @@ export const Player = () => {
     }}
     onClick={handleProgressChange}
    />
-   <Typography>{toTime(trackDuration)}</Typography>
+   <Typography>{formatSecondsToMinutes(trackDuration)}</Typography>
    <IconButton onClick={() => setIsRepeatOne((prev) => !prev)}>
     {isRepeatOne ? <RepeatOneOn /> : <RepeatOne />}
    </IconButton>
@@ -181,90 +162,3 @@ export const Player = () => {
   </Box>
  );
 };
-
-// import React, { useRef, useState, useEffect } from "react";
-// import { LinearProgress } from "@mui/material";
-
-// export const Player = () => {
-//  const audioRef = useRef<HTMLAudioElement>(null);
-//  const [progress, setProgress] = useState(0);
-
-//  useEffect(() => {
-//   const updateProgress = () => {
-//    if (audioRef.current) {
-//     const currentTime = audioRef.current.currentTime;
-//     const duration = audioRef.current.duration || 0;
-//     const percent = (currentTime / duration) * 100;
-//     setProgress(percent);
-//    }
-//   };
-
-//   if (audioRef.current) {
-//    audioRef.current.addEventListener("timeupdate", updateProgress);
-//   }
-
-//   return () => {
-//    if (audioRef.current) {
-//     audioRef.current.removeEventListener("timeupdate", updateProgress);
-//    }
-//   };
-//  }, []);
-
-//  // Обработчик клика по прогресс-бару
-//  const handleProgressClick = (event: React.MouseEvent<HTMLDivElement>) => {
-//   if (audioRef.current) {
-//    const progressBar = event.currentTarget; // Получаем элемент прогресс-бара
-//    const clickPositionX = event.nativeEvent.offsetX; // Позиция клика по оси X
-//    const progressBarWidth = progressBar.clientWidth; // Ширина прогресс-бара
-//    const clickPercentage = clickPositionX / progressBarWidth; // Процент нажатия на прогресс-бар
-//    const newTime = clickPercentage * audioRef.current.duration; // Новое время воспроизведения
-//    console.log("clickPositionX", clickPositionX);
-//    console.log("progressBarWidth", progressBarWidth);
-//    console.log("clickPercentage", clickPercentage);
-//    console.log("newTime", newTime);
-//    console.log("===>>>>>>>>>>>>>>>");
-
-//    audioRef.current.currentTime = newTime; // Устанавливаем новое время
-//   }
-//  };
-
-//  const handleAudioClick = (event: React.MouseEvent<HTMLAudioElement>) => {
-//   if (audioRef.current) {
-//    const progressBar = event.currentTarget; // Получаем элемент прогресс-бара
-//    const clickPositionX = event.nativeEvent.offsetX; // Позиция клика по оси X
-//    const progressBarWidth = progressBar.clientWidth; // Ширина прогресс-бара
-//    const clickPercentage = clickPositionX / progressBarWidth; // Процент нажатия на прогресс-бар
-//    const newTime = clickPercentage * audioRef.current.duration; // Новое время воспроизведения
-//    console.log("clickPositionX AUDIO", clickPositionX);
-//    console.log("progressBarWidth AUDIO", progressBarWidth);
-//    console.log("clickPercentage AUDIO", clickPercentage);
-//    console.log("newTime AUDIO", newTime);
-//    console.log("===>>>>>>>>>>>>>>>");
-
-//    audioRef.current.currentTime = newTime; // Устанавливаем новое время
-//   }
-//  };
-//  return (
-//   <div>
-//    <audio
-//     ref={audioRef}
-//     src="/Dope - Thanks For Nothing.mp3"
-//     controls
-//     onClick={handleAudioClick}
-//    />
-
-//    {/* Полоса прогресса */}
-//    <LinearProgress
-//     variant="determinate"
-//     value={progress}
-//     onClick={handleProgressClick} // Навешиваем событие onClick
-//     sx={{
-//      width: "100%",
-//      marginLeft: "10px",
-//      marginRight: "10px",
-//      cursor: "pointer", // Указываем, что элемент кликабельный
-//     }}
-//    />
-//   </div>
-//  );
-// };
