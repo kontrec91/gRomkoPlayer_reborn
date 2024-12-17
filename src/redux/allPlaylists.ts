@@ -1,15 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { AllPlaylistsDataType } from "./types";
+import { initialState } from "../constants/defaultValues";
 
-const initialState: AllPlaylistsDataType[] = [];
-
-const allPlaylists = createSlice({
+const setAllPlaylists = createSlice({
  name: "allPlaylists",
  initialState,
  reducers: {
-  setAllPlaylists: (state, action) => action.payload,
+  //   getAllPlaylists: (state, action) => (action.payload ? action.payload : state),
+  getAllPlaylists: (state, action) => (action.payload ? action.payload : state),
  },
 });
 
-export const { setAllPlaylists } = allPlaylists.actions;
-export default allPlaylists.reducer;
+export const { getAllPlaylists } = setAllPlaylists.actions; // using for update state, when data has received fom api request
+export default setAllPlaylists.reducer;

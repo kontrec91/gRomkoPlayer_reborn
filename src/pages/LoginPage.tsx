@@ -1,4 +1,4 @@
-import React, { useState, MouseEvent } from "react";
+import React, { useState, MouseEvent, useEffect } from "react";
 import { alpha } from "@mui/material/styles";
 import background from "../images/headphones.jpg";
 import {
@@ -14,6 +14,12 @@ import {
  Link,
 } from "@mui/material";
 
+import {
+ Unstable_Popup as BasePopup,
+ PopupPlacement,
+} from "@mui/base/Unstable_Popup";
+import { styled, css, Theme } from "@mui/system";
+
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import Visibility from "@mui/icons-material/Visibility";
@@ -21,9 +27,29 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { ROUTES } from "../constants/routes";
 import { Wrapper } from "../components/Wrapper";
 import { useNavigate } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+// import { signInUser, signInUserRequest } from "../redux/setLoginUser";
+import { signInUserRequest } from "../redux/setLoginUser";
+import { RootState } from "../redux/store";
+import { useLogin } from "../hooks/useLogin";
+// import { loginUser } from "../redux/sagas/sagas";
+
+const grey = {
+ 50: "#F3F6F9",
+ 100: "#E5EAF2",
+ 200: "#DAE2ED",
+ 300: "#C7D0DD",
+ 400: "#B0B8C4",
+ 500: "#9DA8B7",
+ 600: "#6B7A90",
+ 700: "#434D5B",
+ 800: "#303740",
+ 900: "#1C2025",
+};
 
 export const LoginPage = () => {
  const navigate = useNavigate();
+ const dispatch = useDispatch();
  const formik = useFormik({
   initialValues: {
    email: "",
@@ -47,7 +73,12 @@ export const LoginPage = () => {
  };
 
  const handleSubmit = (values: { email: string; password: string }) => {
-  navigate(ROUTES.MY_PLAYLISTS);
+  console.log("values", values);
+  dispatch(signInUserRequest(values));
+  //   dispatch(loginUser(values));
+
+  //   navigate(ROUTES.MY_PLAYLISTS);
+  login();
  };
 
  return (
@@ -135,6 +166,38 @@ export const LoginPage = () => {
      </Link>
     </Typography>
    </Box>
+   <div style={{ width: "100%" }}>
+    {/* <PlacementForm setPlacement={setPlacement} /> */}
+    <div style={{ padding: "4rem 0", textAlign: "center" }}>
+     {/* <Anchor ref={setAnchor} aria-describedby="placement-popper"> */}
+     <BasePopup id="placement-popper" open offset={4}>
+      <PopupBody>The content of the Popup.</PopupBody>
+     </BasePopup>
+    </div>
+   </div>
   </Wrapper>
  );
 };
+
+const PopupBody = styled("div")(
+ ({ theme }: { theme: Theme }) => css`
+  padding: 0.5rem 1rem;
+  border: 1px solid ${theme.palette.mode === "dark" ? grey[700] : grey[200]};
+  background-color: ${theme.palette.mode === "dark" ? grey[900] : "#fff"};
+  border-radius: 8px;
+  box-shadow: ${theme.palette.mode === "dark"
+   ? `0px 4px 8px rgb(0 0 0 / 0.7)`
+   : `0px 4px 8px rgb(0 0 0 / 0.1)`};
+  min-height: 3rem;
+  display: flex;
+  align-items: center;
+ `
+);
+// const Anchor = styled("span")(
+//  ({ theme }: { theme: Theme }) => css`
+//   display: inline-block;
+//   background-color: ${theme.palette.mode === "dark" ? grey[900] : grey[50]};
+//   padding: 0.5rem 1rem;
+//   border-radius: 0.5rem;
+//  `
+// );

@@ -21,9 +21,14 @@ import { ROUTES } from "../constants/routes";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useFormik } from "formik";
 import { useNavigate } from "react-router";
+// import { addNewUser, addNewUserRequest } from "../redux/setNewUser";\
+import { addNewUserRequest } from "../redux/setNewUser";
+
+import { useDispatch } from "react-redux";
 
 export const RegistrationPage = () => {
  const navigate = useNavigate();
+ const dispatch = useDispatch();
 
  const formik = useFormik({
   initialValues: {
@@ -57,8 +62,13 @@ export const RegistrationPage = () => {
   event.preventDefault();
  };
 
- const handleSubmit = (values: { email: string; password: string }) => {
+ const handleSubmit = (values: {
+  login: string;
+  email: string;
+  password: string;
+ }) => {
   console.log("Submit", values);
+  dispatch(addNewUserRequest(values));
   navigate(ROUTES.MY_PLAYLISTS);
  };
 
