@@ -18,3 +18,4 @@ export const createNewUser = createAction<{
 export const loginUser = createAction<{ email: string; password: string }>(
  "existingUser/signInUserRequest"
 );
+export const logoutUser = createAction("auth/logout");

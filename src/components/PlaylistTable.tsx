@@ -185,11 +185,11 @@ export const PlaylistTable = ({ data }: PlaylistTableTestProps) => {
   },
  });
 
- console.log(
-  table
-   .getHeaderGroups()
-   .map((headerGroup) => headerGroup.headers.map((header) => header))
- );
+//  console.log(
+//   table
+//    .getHeaderGroups()
+//    .map((headerGroup) => headerGroup.headers.map((header) => header))
+//  );
 
  return (
   <Table

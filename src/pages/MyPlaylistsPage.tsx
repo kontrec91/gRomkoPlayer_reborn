@@ -21,7 +21,8 @@ export const MyPlaylistsPage = () => {
 
  const data: AllPlaylistsDataType[] =
   //  InitialStateType
-  useSelector((state: RootState) => state.allPlaylists);
+//   useSelector((state: RootState) => state.rootReducer.allPlaylists);
+useSelector((state: RootState) => state.allPlaylists);
 
  console.log("MyPlaylistsPage data", data);
 

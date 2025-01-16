@@ -6,7 +6,10 @@ import { RootState } from "../redux/store";
 import { useSelector } from "react-redux";
 
 export const AllPlaylistsPage = () => {
- const allPlaylists = useSelector((state: RootState) => state.allPlaylists);
+ const allPlaylists = useSelector(
+  //   (state: RootState) => state.rootReducer.allPlaylists
+  (state: RootState) => state.allPlaylists
+ );
 
  return (
   <Wrapper background={background}>

@@ -11,7 +11,7 @@ export function* handleLogin({
 }>): Generator<any, void, any> {
  try {
   const user = yield call(userLogin, email, password);
-  console.log(user);
+//   console.log(user);
   yield put(signInUserSuccess(user));
  } catch (error: any) {
   yield put(signInUserFailure(error.message));

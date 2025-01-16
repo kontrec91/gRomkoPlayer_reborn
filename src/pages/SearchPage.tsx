@@ -8,9 +8,14 @@ import { RootState } from "../redux/store";
 
 export const SearchPage = () => {
  //  useEffect(() => getMyPlaylist(), []);
- const allPlaylists = useSelector((state: RootState) => state.allPlaylists);
-
- console.log('allPlaylists', allPlaylists)
+//  const allPlaylists = useSelector(
+//   (state: RootState) => state.rootReducer.allPlaylists
+//  );
+ const allPlaylists = useSelector(
+    (state: RootState) => state.allPlaylists
+   );
+  
+ console.log("allPlaylists", allPlaylists);
  return (
   <Wrapper background={background}>
    <NavigationBar />
