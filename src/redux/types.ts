@@ -27,6 +27,12 @@ export interface usersType {
  userPassword: null | string;
 }
 
+export interface usersAuthState {
+ user: usersType | {};
+ error: string | null;
+ status: string;
+}
+
 // Типизация пропсов для компонента PlaylistTableTest
 export interface PlaylistTableTestProps {
  data: AllPlaylistsDataType[];

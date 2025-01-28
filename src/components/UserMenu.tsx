@@ -31,7 +31,7 @@ export const UserMenu = () => {
   //    dispatch(setTab(defaultTabValue));
   //    dispatch(signInUserRequest({})); here we need to
   dispatch(logoutUser());
-  localStorage.removeItem("authToken"); //need to create hook for this? which combine all opeations with locaklstorage and logout
+//   localStorage.removeItem("authToken"); //need to create hook for this? which combine all opeations with locaklstorage and logout
   navigate(ROUTES.LOGIN);
  };
 

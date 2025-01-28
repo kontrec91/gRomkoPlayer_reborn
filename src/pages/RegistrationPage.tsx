@@ -22,9 +22,11 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useFormik } from "formik";
 import { useNavigate } from "react-router";
 // import { addNewUser, addNewUserRequest } from "../redux/setNewUser";\
-import { addNewUserRequest } from "../redux/setNewUser";
+// import { addNewUserRequest } from "../redux/setNewUser";
 
 import { useDispatch } from "react-redux";
+import { addNewUserRequest } from "../redux/authSlice";
+// import { signInUserRequest } from "../redux/setLoginUser";
 
 export const RegistrationPage = () => {
  const navigate = useNavigate();
@@ -69,6 +71,7 @@ export const RegistrationPage = () => {
  }) => {
   console.log("Submit", values);
   dispatch(addNewUserRequest(values));
+  //   dispatch(signInUserRequest(values));
   navigate(ROUTES.MY_PLAYLISTS);
  };
 

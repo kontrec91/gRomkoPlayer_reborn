@@ -4,31 +4,33 @@ import tab from "./currentTab";
 import setAllPlaylists from "./allPlaylists";
 import createSagaMiddleware from "redux-saga";
 import { sagaWatcher } from "./sagas/sagas";
-import addNewUserReducer from "./setNewUser";
-import loginUserReducer from "./setLoginUser";
-import { logoutUser } from "../constants/actions/actions";
+// import addNewUserReducer from "./setNewUser";
+// import loginUserReducer from "./setLoginUser";
+// import { logoutUser } from "../constants/actions/actions";
+import authSlice from "./authSlice";
 const sagaMiddleware = createSagaMiddleware();
 
 const combinedReducers = combineReducers({
  tab,
  allPlaylists: setAllPlaylists,
- user: addNewUserReducer,
- authUser: loginUserReducer,
+ //  user: addNewUserReducer,
+ //  authUser: loginUserReducer,
+ authUser: authSlice, //login and registration
 });
 
-const rootReducer = (
- state: RootState,
- action: { type: string; payload: any }
-) => {
- if (action.type === logoutUser.type) {
-  state = {};
- }
- //  return combineReducers(state, action);
- return combinedReducers(state, action);
-};
+// const rootReducer = (
+//  state: RootState,
+//  action: { type: string; payload: any }
+// ) => {
+//  if (action.type === logoutUser.type) {
+//   state = {};
+//  }
+//  //  return combineReducers(state, action);
+//  return combinedReducers(state, action);
+// };
 
 export const store: any = configureStore({
- reducer: rootReducer,
+ reducer: combinedReducers,
  //  {
  //   tab,
  //   allPlaylists: setAllPlaylists,
