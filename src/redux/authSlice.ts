@@ -18,7 +18,6 @@ const authSlice = createSlice({
   },
 
   signInUserSuccess: (state, action) => {
-   //    const { user_id, user_name, user_email, user_password } = action.payload;
    const { name, id, email } = action.payload;
    state.user = {
     userId: id,
@@ -59,7 +58,6 @@ const authSlice = createSlice({
   },
 
   Logout: (state) => {
-   //    state = initialState;
    return initialState;
   },
  },

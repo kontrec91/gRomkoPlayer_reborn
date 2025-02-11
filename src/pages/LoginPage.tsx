@@ -23,10 +23,8 @@ import { ROUTES } from "../constants/routes";
 import { Wrapper } from "../components/Wrapper";
 import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-// import { signInUserRequest } from "../redux/setLoginUser";
 import { RootState } from "../redux/store";
 import { signInUserRequest } from "../redux/authSlice";
-// import { useLogin } from "../hooks/useLogin";
 
 export const LoginPage = () => {
  const navigate = useNavigate();
@@ -51,7 +49,6 @@ export const LoginPage = () => {
  });
 
  const [showPassword, setShowPassword] = useState(false);
- //  const login = useLogin();
  const handleClickShowPassword = () => setShowPassword((show) => !show);
  const handleMouseDownPassword = (event: MouseEvent<HTMLButtonElement>) => {
   event.preventDefault();

@@ -7,7 +7,6 @@ import { useSelector } from "react-redux";
 
 export const AllPlaylistsPage = () => {
  const allPlaylists = useSelector(
-  //   (state: RootState) => state.rootReducer.allPlaylists
   (state: RootState) => state.allPlaylists
  );
 

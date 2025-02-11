@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Transition } from "react-transition-group";
-import { styled, useTheme } from "@mui/system";
-// import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
+import { styled } from "@mui/system";
 import CancelRoundedIcon from "@mui/icons-material/CancelRounded";
 import CloseIcon from "@mui/icons-material/Close";
 import { Snackbar } from "@mui/base/Snackbar";

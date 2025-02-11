@@ -5,7 +5,6 @@ const setAllPlaylists = createSlice({
  name: "allPlaylists",
  initialState,
  reducers: {
-  //   getAllPlaylists: (state, action) => (action.payload ? action.payload : state),
   getAllPlaylists: (state, action) => (action.payload ? action.payload : state),
  },
 });

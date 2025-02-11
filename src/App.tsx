@@ -15,7 +15,6 @@ import { SearchPage } from "./pages/SearchPage";
 
 function App() {
  return (
-//   <>testing</>
     <Router>
      <Routes>
       <Route path={ROUTES.LOGIN} element={<LoginPage />} />

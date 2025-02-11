@@ -1,4 +1,4 @@
-import React, { MouseEvent, useState } from "react";
+import React, { MouseEvent, useEffect, useState } from "react";
 
 import { Wrapper } from "../components/Wrapper";
 import background from "../images/headphones.jpg";
@@ -26,11 +26,32 @@ import { useNavigate } from "react-router";
 
 import { useDispatch } from "react-redux";
 import { addNewUserRequest } from "../redux/authSlice";
+import { useSelector } from "react-redux";
+import { RootState } from "../redux/store";
 // import { signInUserRequest } from "../redux/setLoginUser";
 
 export const RegistrationPage = () => {
  const navigate = useNavigate();
  const dispatch = useDispatch();
+
+ const createUserError = useSelector(
+  (state: RootState) => state.authUser.error
+ );
+ const createUserStatus = useSelector(
+  (state: RootState) => state.authUser.status
+ );
+
+ const newUser = useSelector((state: RootState) => state.authUser.user);
+
+ useEffect(() => {
+  //when token will add in future, need to create custom hook for this
+  console.log(createUserError);
+  console.log(createUserStatus);
+
+  if (!createUserError && createUserStatus === "complete") {
+   navigate(ROUTES.MY_PLAYLISTS);
+  }
+ }, [createUserError, createUserStatus, navigate]);
 
  const formik = useFormik({
   initialValues: {
@@ -69,10 +90,7 @@ export const RegistrationPage = () => {
   email: string;
   password: string;
  }) => {
-  console.log("Submit", values);
   dispatch(addNewUserRequest(values));
-  //   dispatch(signInUserRequest(values));
-  navigate(ROUTES.MY_PLAYLISTS);
  };
 
  return (
