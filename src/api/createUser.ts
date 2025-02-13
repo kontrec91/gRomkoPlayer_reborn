@@ -15,11 +15,10 @@ export const userRegistration = async (
    user_password: password,
   });
   const token = res.data.accessToken;
-  tokenManager.setAuthToken(token);
+  tokenManager.setRefreshToken(token);
   const decoded = jwtDecode(token);
-  return decoded;
+  return { ...decoded, accessToken: res.data.accessToken };
  } catch (error: any) {
-  console.log("ERROR", error);
   throw new Error(error.response.data.message);
  }
 };

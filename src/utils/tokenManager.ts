@@ -1,5 +1,6 @@
 export const tokenManager = {
- getAuthToken: () => localStorage.getItem("authToken"),
- setAuthToken: (token: string) => localStorage.setItem("authToken", token),
- removeAuthToken: () => localStorage.removeItem("authToken"),
+ getRefreshToken: () => localStorage.getItem("refreshToken"),
+ setRefreshToken: (token: string) =>
+  localStorage.setItem("refreshToken", token),
+ removeRefreshToken: () => localStorage.removeItem("refreshToken"),
 };

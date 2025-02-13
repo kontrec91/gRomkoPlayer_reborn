@@ -27,6 +27,7 @@ export interface usersAuthState {
  user: usersType | {};
  error: string | null;
  status: string;
+ accessToken: string | null;
 }
 
 // Типизация пропсов для компонента PlaylistTableTest

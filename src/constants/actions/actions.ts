@@ -13,4 +13,5 @@ export const logInUserRequest = createAction<{
  password: string;
 }>("authUser/signInUserRequest");
 
-export const logoutUser = createAction("authUser/Logout");
+
+export const logoutUserRequest = createAction("authUser/logoutUserRequest");

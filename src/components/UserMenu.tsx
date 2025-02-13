@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { logoutUser } from "../constants/actions/actions";
+import { logoutUserRequest } from "../constants/actions/actions";
 import { useDispatch } from "react-redux";
 import { ROUTES } from "../constants/routes";
 import { Box, ClickAwayListener } from "@mui/material";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
+import { tokenManager } from "../utils/tokenManager";
 
 export const UserMenu = () => {
  const dispatch = useDispatch();
@@ -13,7 +14,14 @@ export const UserMenu = () => {
  const authUser = useSelector(
   (state: RootState) => state.authUser.user.userName
  );
+ const refreshToken = tokenManager.getRefreshToken() as string;
  const [open, setOpen] = useState(false);
+
+ useEffect(() => {
+  if (!refreshToken) {
+   navigate(ROUTES.LOGIN);
+  }
+ }, [refreshToken, navigate]);
 
  const handleClick = () => {
   setOpen((prev) => !prev);
@@ -27,9 +35,11 @@ export const UserMenu = () => {
   event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
  ) => {
   event.preventDefault();
-  dispatch(logoutUser());
+  //   dispatch(logoutUserRequest({ token: authToken }));
+  dispatch(logoutUserRequest());
+
   // here need to use custom hook for this
-  navigate(ROUTES.LOGIN);
+  //   navigate(ROUTES.LOGIN);
  };
 
  return (

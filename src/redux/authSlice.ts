@@ -5,6 +5,7 @@ const initialState: usersAuthState = {
  user: {}, // Currently logged in user
  error: null, // Any error that occurred during login
  status: "idle", // Status of the login process (idle, pending, complete, failed)
+ accessToken: null,
 };
 
 const authSlice = createSlice({
@@ -18,7 +19,7 @@ const authSlice = createSlice({
   },
 
   signInUserSuccess: (state, action) => {
-   const { name, id, email } = action.payload;
+   const { name, id, email, accessToken } = action.payload;
    state.user = {
     userId: id,
     userName: name,
@@ -26,6 +27,7 @@ const authSlice = createSlice({
    };
    state.error = null;
    state.status = "complete";
+   state.accessToken = accessToken;
   },
 
   signInUserFailure: (state, action) => {
@@ -41,7 +43,7 @@ const authSlice = createSlice({
   },
 
   addNewUserSuccess: (state, action) => {
-   const { id, email, name } = action.payload;
+   const { id, email, name, accessToken } = action.payload;
    state.user = {
     userId: id,
     userName: name,
@@ -49,6 +51,7 @@ const authSlice = createSlice({
    };
    state.error = null;
    state.status = "complete";
+   state.accessToken = accessToken;
   },
 
   addNewUserFailure: (state, action) => {
@@ -57,8 +60,18 @@ const authSlice = createSlice({
    state.status = "failed";
   },
 
-  Logout: (state) => {
+  logoutUserRequest: (state) => {
+   return state;
+  },
+
+  logoutUserSuccess: () => {
    return initialState;
+  },
+
+  logoutUserFailure: (state, action) => {
+   //    state.user = initialState.user;
+   state.error = action.payload;
+   state.status = "failed";
   },
  },
 });
@@ -70,7 +83,9 @@ export const {
  addNewUserRequest,
  addNewUserSuccess,
  addNewUserFailure,
- Logout,
+ logoutUserRequest,
+ logoutUserSuccess,
+ logoutUserFailure,
 } = authSlice.actions;
 
 export default authSlice.reducer;

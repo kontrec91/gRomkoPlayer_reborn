@@ -11,10 +11,11 @@ export const userLogin = async (email: string, password: string) => {
    user_password: password,
   });
 
-  const token = res.data.accessToken;
-  tokenManager.setAuthToken(token);
+
+  const token = res.data.refreshToken;
+  tokenManager.setRefreshToken(token);
   const decoded = jwtDecode(token);
-  return decoded;
+  return { ...decoded, accessToken: res.data.accessToken };
  } catch (error: any) {
   throw new Error(error.response.data.message);
  }

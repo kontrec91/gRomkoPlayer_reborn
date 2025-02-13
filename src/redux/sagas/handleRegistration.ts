@@ -1,5 +1,5 @@
 import { PayloadAction } from "@reduxjs/toolkit";
-import { addNewUserFailure, addNewUserRequest } from "../authSlice";
+import { addNewUserFailure, addNewUserSuccess } from "../authSlice";
 import { call, put } from "redux-saga/effects";
 import { userRegistration } from "../../api/createUser";
 
@@ -12,7 +12,7 @@ export function* handleRegistration({
 }>): Generator<any, void, any> {
  try {
   const newUser = yield call(userRegistration, login, email, password);
-  yield put(addNewUserRequest(newUser));
+  yield put(addNewUserSuccess(newUser)); //addNewUserSuccess???
  } catch (error: any) {
   yield put(addNewUserFailure(error.message));
  }
